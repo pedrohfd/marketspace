@@ -43,14 +43,14 @@ export const SignIn = () => {
 					<Input.Root>
 						<Input.Content
 							placeholder="Senha"
-							secureTextEntry={isPasswordShown}
+							secureTextEntry={!isPasswordShown}
 						/>
 
 						<Input.Actions onPress={toggleShowPassword}>
 							{isPasswordShown ? (
-								<Input.Icon icon={EyeIcon} />
-							) : (
 								<Input.Icon icon={EyeClosedIcon} />
+							) : (
+								<Input.Icon icon={EyeIcon} />
 							)}
 						</Input.Actions>
 					</Input.Root>

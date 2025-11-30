@@ -5,6 +5,4 @@ export const IconContainer = styled.View`
 
   justify-content: center;
   align-items: center;
-
-  color: ${({ theme }) => theme.colors.gray_700};
 `
