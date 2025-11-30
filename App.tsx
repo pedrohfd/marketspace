@@ -1,20 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+	Karla_300Light,
+	Karla_400Regular,
+	Karla_700Bold,
+	useFonts,
+} from '@expo-google-fonts/karla'
+import * as SplashScreen from 'expo-splash-screen'
+import { StatusBar } from 'expo-status-bar'
+import { useEffect } from 'react'
+import { ThemeProvider } from 'styled-components/native'
+
+import { Routes } from '@/routes'
+import { theme } from '@/styles/theme'
+
+SplashScreen.preventAutoHideAsync()
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+	const [loaded, error] = useFonts({
+		Karla_300Light,
+		Karla_400Regular,
+		Karla_700Bold,
+	})
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+	useEffect(() => {
+		if (loaded || error) {
+			SplashScreen.hideAsync()
+		}
+	}, [loaded, error])
+
+	if (!loaded && !error) {
+		return null
+	}
+
+	return (
+		<ThemeProvider theme={theme}>
+			<StatusBar style="auto" />
+			<Routes />
+		</ThemeProvider>
+	)
+}
